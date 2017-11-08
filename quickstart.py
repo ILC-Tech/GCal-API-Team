@@ -106,6 +106,7 @@ def main():
 
 
     return
+    
     print('Getting the upcoming 10 events')
     eventsResult = service.events().list(
         calendarId='primary', timeMin=now, maxResults=10, singleEvents=True,
