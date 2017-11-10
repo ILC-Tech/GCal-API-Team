@@ -69,6 +69,7 @@ def main():
     one_hour_future = now + datetime.timedelta(hours=1)
     one_hour_future_str = one_hour_future.isoformat() + 'Z'
 
+
     # creating HTTP Request body for Freebusy query method. Keep in mind this only checks the user's primary calendar;
     # we want to check ALL calendars of a given user, so we need to do some extra work with the API.
     req_body = {"timeMin":now_str, "timeMax":one_hour_future_str,"items":[{"id":"primary"}]}
@@ -105,24 +106,27 @@ def main():
     # print(freeBusyResponse)
 
 
-    return
+    # return
     
-    print('Getting the upcoming 10 events')
-    eventsResult = service.events().list(
-        calendarId='primary', timeMin=now, maxResults=10, singleEvents=True,
-        orderBy='startTime').execute()
+    
+    
+    # print('Getting the upcoming 10 events')
+    # events = service.events()
+    # eventsQuery = events.list()
+    #     calendarId='primary', timeMin=now, maxResults=10, singleEvents=True,
+    #     orderBy='startTime').execute()
 
-    # print(eventsResult)
+    # # print(eventsResult)
 
-    events = eventsResult.get('items', [])
+    # events = eventsResult.get('items', [])
 
-    # print(events)
+    # # print(events)
 
-    if not events:
-        print('No upcoming events found.')
-    for event in events:
-        start = event['start'].get('dateTime', event['start'].get('date'))
-        print(start, event['summary'])
+    # if not events:
+    #     print('No upcoming events found.')
+    # for event in events:
+    #     start = event['start'].get('dateTime', event['start'].get('date'))
+    #     print(start, event['summary'])
 
 
 if __name__ == '__main__':
