@@ -78,20 +78,22 @@ def main():
     freeBusyQuery = freeBusy.query(body=req_body)
     freeBusyResponse = freeBusyQuery.execute()
     ### END ###
-
     ### Extracting all calendars with a given user credentials ###
     # step-by-step generation of CalList response. Normal code will be more succinct
     calList = service.calendarList()
     calListRequest = calList.list()
     calListResponse = calListRequest.execute()
+    eventList = []
     for calendar_list_entry in calListResponse['items']:
         print(calendar_list_entry['id'])
+        eventList.append({"id":calendar_list_entry['id']})
 
+    print ("haha")
+    print (eventList)
     ### Retrying freebusy query with multiple calendars
     req_body = {"timeMin": now_str,
                 "timeMax": one_hour_future_str,
-                "items": [{"id": "ilctech.test@gmail.com"},
-                          {"id":"204l1l7j7vb609nohtikek9ih8@group.calendar.google.com"}]}
+                "items": eventList}
 
     # step-by-step generation of Freebusy response. Normal code will be more succinct
     freeBusy = service.freebusy()
