@@ -109,9 +109,9 @@ def main():
 
 
     # return
-    
-    
-    
+
+
+
     # print('Getting the upcoming 10 events')
     # events = service.events()
     # eventsQuery = events.list()
